@@ -54,8 +54,6 @@ int	main(int argc, char **argv, char **env)
 
 	lst = setup_lst();
 	check_argc(argc, env);
-	lst = get_infile(lst, argv);
-	lst = get_outfile(lst, argv);
 	parse = get_cmd(argv[2], env);
 	lst.cmd1 = parse.cmd;
 	lst.arg1 = parse.arg;
@@ -63,6 +61,8 @@ int	main(int argc, char **argv, char **env)
 	lst.cmd2 = parse.cmd;
 	lst.arg2 = parse.arg;
 	lst.env = env;
+	lst = get_infile(lst, argv);
+	lst = get_outfile(lst, argv);
 	pipex(lst);
 	return (0);
 }
