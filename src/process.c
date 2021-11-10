@@ -27,7 +27,7 @@ void	parent_process(t_list lst)
 	dup2(infile, STDIN_FILENO);
 	close(infile);
 	dup2(lst.fd[1], STDOUT_FILENO);
-	if (execve(lst.cmd1, lst.arg1, lst.env))
+	if (execve(lst.arg1[0], lst.arg1, lst.env))
 	{
 		free_lst(lst);
 		exit(1);
@@ -47,7 +47,7 @@ void	child_process(t_list lst)
 	dup2(fd, STDOUT_FILENO);
 	close(lst.fd[0]);
 	close(fd);
-	if (execve(lst.cmd2, lst.arg2, lst.env))
+	if (execve(lst.arg2[0], lst.arg2, lst.env))
 	{
 		free_lst(lst);
 		exit(1);
