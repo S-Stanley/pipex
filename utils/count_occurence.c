@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:50:08 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 14:50:23 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 15:47:37 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ unsigned int	count_occurence(char *str, char *occurence)
 			i = index_to_remember;
 		i++;
 	}
+	if (count > 0)
+		count++;
 	return (count);
 }

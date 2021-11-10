@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:09:46 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 15:35:25 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 15:59:59 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,25 @@ t_list	get_outfile(t_list lst, char **argv)
 	return (lst);
 }
 
+void	free_that_matrice(char **matrice)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (matrice[i])
+	{
+		free(matrice[i]);
+		i++;
+	}
+	free(matrice);
+}
+
 t_list	get_cmd_1(t_list lst, char **argv, char **env)
 {
 	char **cmd;
 
-	ft_split(argv[2], " ");
+	cmd = ft_split(argv[2], " ");
+	free_that_matrice(cmd);
 	return (lst);
 }
 

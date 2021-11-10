@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:46:14 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 15:35:13 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 15:59:41 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,21 @@ char	**get_malloc(unsigned int size, char *to_split, char*splitter)
 	}
 }
 
+unsigned int	count_next_occurence(char *to_split, int i, char *splitter)
+{
+	unsigned int	count;
+
+	count = 0;
+	if (to_split[i] == splitter[0])
+		i++;
+	while (to_split[i] && to_split[i] != splitter[0])
+	{
+		i++;
+		count++;
+	}
+	return (count);
+}
+
 t_return_value	get_value(char *to_split, int i, char *splitter)
 {
 	char		*str;
@@ -36,7 +51,7 @@ t_return_value	get_value(char *to_split, int i, char *splitter)
 	t_return_value	to_return;
 
 	x = 0;
-	str = malloc(sizeof(char) * ( + 1));
+	str = malloc(sizeof(char) * (count_next_occurence(to_split, i, splitter) + 1));
 	if (!str)
 	{
 		to_return.str = NULL;
@@ -54,19 +69,6 @@ t_return_value	get_value(char *to_split, int i, char *splitter)
 	to_return.str = str;
 	to_return.i = i;
 	return (to_return);
-}
-
-void	read_matrice(char **str)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		str_write(str[i]);
-		str_write("\n");
-		i++;
-	}
 }
 
 char	**ft_split(char *to_split, char *splitter)
@@ -92,6 +94,5 @@ char	**ft_split(char *to_split, char *splitter)
 		x++;
 	}
 	to_return[x] = 0;
-	read_matrice(to_return);
 	return (to_return);
 }
