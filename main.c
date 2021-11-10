@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:09:46 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 19:10:57 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 19:36:13 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	main(int argc, char **argv, char **env)
 	lst.arg1 = parse.arg;
 	parse = get_cmd(lst, argv[3], env);
 	lst.cmd2 = parse.cmd;
-	lst.arg2 = parse.arg;	
+	lst.arg2 = parse.arg;
+	lst.env = env;
 	pipex(lst);
 	return (0);
 }

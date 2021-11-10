@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 19:02:56 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 19:05:02 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 19:40:50 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	child_process(t_list lst)
 void	pipex(t_list lst)
 {
 	int	fd;
-	
+
 	if (pipe(lst.fd) == -1)
 	{
 		str_write("Error starting pipe");
