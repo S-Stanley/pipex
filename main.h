@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:10:00 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 14:41:18 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 14:50:56 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ typedef struct s_list {
 
 unsigned int	ft_strlen(char *str);
 void		str_write(char *str);
+unsigned int	count_occurence(char *str, char *occurence);
+char		**ft_split(char *to_split, char *splitter);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:09:46 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 14:43:37 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 15:35:25 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ t_list	get_outfile(t_list lst, char **argv)
 	return (lst);
 }
 
+t_list	get_cmd_1(t_list lst, char **argv, char **env)
+{
+	char **cmd;
+
+	ft_split(argv[2], " ");
+	return (lst);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_list	lst;
@@ -60,7 +68,7 @@ int	main(int argc, char **argv, char **env)
 	check_argc(argc);
 	lst = get_infile(lst, argv);
 	lst = get_outfile(lst, argv);
-	//lst = get_cmd_1(argv, env);
-	//lst = get_cmd_2(argv, env);	
+	lst = get_cmd_1(lst, argv, env);
+	//lst = get_cmd_2(lst, argv, env);	
 	return (0);
 }
