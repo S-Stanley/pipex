@@ -47,7 +47,7 @@ unsigned int	count_occ(char *str, char *occurence);
 char			**ft_split(char *to_split, char *splitter);
 char			*ft_concat(char *str1, char *str2);
 char			*whereis_cmd(char **cmd, char **env);
-char			**get_path_var(char **env);
+char			**get_path_var(char **env, char *to_find);
 char			**push_arr(char **arr, char *to_add);
 void			pipex(t_list lst);
 void			free_that_matrice(char **matrice);
@@ -55,5 +55,8 @@ t_list			get_infile(t_list lst, char **argv);
 t_list			get_outfile(t_list lst, char **argv);
 t_cmd			get_cmd(char *argv_x, char **env);
 void			check_if_real_path_ok(char *real_path, char **cmd);
+char			*get_shell(char **env);
+unsigned int	count_len_array(char **arr);
+char			*ft_strdup(char *str);
 
 #endif

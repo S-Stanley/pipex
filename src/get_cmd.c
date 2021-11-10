@@ -30,7 +30,7 @@ char	*concat_path(char *s1, char *s2, char *s3)
 	return (str2);
 }
 
-char	**get_path_var(char **env)
+char	**get_path_var(char **env, char *to_find)
 {
 	char			**path;
 	unsigned int	i;
@@ -39,7 +39,7 @@ char	**get_path_var(char **env)
 	i = 0;
 	while (env[i])
 	{
-		if (count_occ(env[i], "PATH"))
+		if (count_occ(env[i], to_find))
 		{
 			str = ft_split(env[i], "=");
 			path = ft_split(str[1], ":");
@@ -57,7 +57,7 @@ char	*whereis_cmd(char **cmd, char **env)
 	unsigned int	x;
 	char			*real_cmd;
 
-	path = get_path_var(env);
+	path = get_path_var(env, "PATH");
 	if (!path)
 		return (NULL);
 	x = 0;
