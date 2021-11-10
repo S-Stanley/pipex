@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:10:00 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 16:06:20 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 17:26:08 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,8 @@ unsigned int	ft_strlen(char *str);
 void		str_write(char *str);
 unsigned int	count_occ(char *str, char *occurence);
 char		**ft_split(char *to_split, char *splitter);
+char		*ft_concat(char *str1, char *str2);
+char		*whereis_cmd(char **cmd, char **env);
+char		**get_path_var(char **cmd, char **env);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:46:14 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 16:06:12 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 17:55:08 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@ typedef struct s_return_value{
 	int	i;
 }		t_return_value;
 
-char	**get_malloc(unsigned int size, char *to_split, char*splitter)
+char	**get_malloc(unsigned int size)
 {
 	char	**to_return;
 
-	to_return = malloc(sizeof(char *) * (count_occ(to_split, splitter) + 1));
+	to_return = malloc(sizeof(char *) * (size + 2));
 	if (!to_return)
 	{
 		str_write("Error allocation in ft_split");
 		exit(1);
 	}
+	return (to_return);
 }
 
 unsigned int	count_next_occ(char *to_split, int i, char *splitter)
@@ -78,7 +79,7 @@ char	**ft_split(char *to_split, char *splitter)
 	unsigned int	x;
 	t_return_value	splitted;
 
-	to_return = get_malloc(count_occ(to_split, splitter), to_split, splitter);
+	to_return = get_malloc(count_occ(to_split, splitter));
 	i = 0;
 	x = 0;
 	while (i < ft_strlen(to_split))
