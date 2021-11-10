@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:10:00 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 18:13:00 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 19:09:18 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 
 typedef struct s_list {
 	int		fd[2];
@@ -38,5 +39,7 @@ char		*ft_concat(char *str1, char *str2);
 char		*whereis_cmd(char **cmd, char **env);
 char		**get_path_var(char **cmd, char **env);
 char		**push_arr(char **arr, char *to_add);
+void		pipex(t_list lst);
+void		free_that_matrice(char **matrice);
 
 #endif

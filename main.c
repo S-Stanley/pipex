@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:09:46 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 19:01:15 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 19:10:57 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ t_cmd	get_cmd(t_list lst, char *argv_x, char **env)
 	return (to_return);
 }
 
+/*
 void	read_matrice(char **arr)
 {
 	unsigned int	i;
@@ -206,6 +207,7 @@ void	read_matrice(char **arr)
 	}
 	printf("\n");
 }
+*/
 
 int	main(int argc, char **argv, char **env)
 {
@@ -222,11 +224,13 @@ int	main(int argc, char **argv, char **env)
 	lst.cmd2 = parse.cmd;
 	lst.arg2 = parse.arg;
 
-	printf("%s\n", lst.infile);
+	/*printf("%s\n", lst.infile);
 	printf("%s\n", lst.cmd1);
 	read_matrice(lst.arg1);
 	printf("%s\n", lst.cmd2);
 	read_matrice(lst.arg2);
-	printf("%s\n", lst.outfile);
+	printf("%s\n", lst.outfile);*/
+	
+	pipex(lst);
 	return (0);
 }
