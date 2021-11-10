@@ -38,13 +38,12 @@ void	read_matrice(char **arr)
 	}
 }
 
-t_list	setup_lst()
+t_list	setup_lst(void)
 {
-	t_list lst;
+	t_list	lst;
 
 	lst.arg1 = NULL;
 	lst.arg2 = NULL;
-
 	return (lst);
 }
 
@@ -53,7 +52,7 @@ int	main(int argc, char **argv, char **env)
 	t_list	lst;
 	t_cmd	parse;
 
-	lst  = setup_lst();
+	lst = setup_lst();
 	check_argc(argc, env);
 	lst = get_infile(lst, argv);
 	lst = get_outfile(lst, argv);
