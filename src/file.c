@@ -52,7 +52,9 @@ t_list	get_outfile(t_list lst, char **argv)
 	if (fd == -1)
 	{
 		close(fd);
-		str_write("No such file or directory");
+		str_write(get_shell(lst.env));
+		str_write(": no such file or directory: ");
+		str_write(argv[4]);
 		exit(1);
 	}
 	close(fd);

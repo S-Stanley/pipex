@@ -12,12 +12,21 @@
 
 #include "../main.h"
 
-void	check_if_real_path_ok(char *real_path, char **cmd)
+void	is_path_ok(char *real_path, char **cmd, char **env, char *str, int code_error)
 {
+	char	*shell;
+	char	**cmd_to_print;
+
 	if (!real_path)
 	{
+		shell = get_shell(env);
+		cmd_to_print = ft_split(str, " ");
 		free_that_matrice(cmd);
-		str_write("No path in env variable");
-		exit(0);
+		str_write(shell);
+		free(shell);
+		str_write(": command not found: ");
+		str_write(cmd_to_print[0]);
+		free_that_matrice(cmd_to_print);
+		exit(code_error);
 	}
 }

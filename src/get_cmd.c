@@ -98,7 +98,7 @@ char	**get_arg(char **arr, char *real_path, char **cmd)
 	return (arr);
 }
 
-t_cmd	get_cmd(char *argv_x, char **env)
+t_cmd	get_cmd(char *argv_x, char **env, int code_error)
 {
 	char		**cmd;
 	char		*real_path;
@@ -111,7 +111,7 @@ t_cmd	get_cmd(char *argv_x, char **env)
 		exit(0);
 	}
 	real_path = whereis_cmd(cmd, env);
-	check_if_real_path_ok(real_path, cmd);
+	is_path_ok(real_path, cmd, env, argv_x, code_error);
 	to_return.cmd = real_path;
 	to_return.arg = get_arg(to_return.arg, real_path, cmd);
 	free(cmd[0]);

@@ -42,19 +42,16 @@ void	child_process(t_list lst)
 
 	wait(&child_status);
 	close(lst.fd[1]);
-	if (access(lst.cmd2, X_OK) == -1)
-	{
-		str_write(lst.cmd2);
-		str_write(" Cannot access this command");
-		free_lst(lst);
-		exit(1);
-	}
 	fd = open(lst.outfile, O_CREAT | O_RDWR | O_TRUNC, 0777);
 	dup2(lst.fd[0], STDIN_FILENO);
 	dup2(fd, STDOUT_FILENO);
 	close(lst.fd[0]);
 	close(fd);
-	execve(lst.cmd2, lst.arg2, lst.env);
+	if (execve(lst.cmd2, lst.arg2, lst.env))
+	{
+		free_lst(lst);
+		exit(1);
+	}
 }
 
 void	pipex(t_list lst)
