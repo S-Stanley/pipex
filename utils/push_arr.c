@@ -27,7 +27,7 @@ unsigned int	count_len_array(char **arr)
 char	**push_arr(char **arr, char *to_add)
 {
 	unsigned int	i;
-	char		**to_return;
+	char			**to_return;
 
 	i = 0;
 	to_return = malloc(sizeof(char *) * (count_len_array(arr) + 2));
@@ -37,7 +37,7 @@ char	**push_arr(char **arr, char *to_add)
 	{
 		while (arr[i])
 		{
-			to_return[i] =arr[i];
+			to_return[i] = arr[i];
 			i++;
 		}
 		free(arr);

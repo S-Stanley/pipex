@@ -32,9 +32,9 @@ char	*concat_path(char *s1, char *s2, char *s3)
 
 char	*whereis_cmd(char **cmd, char **env)
 {
-	char 		**path;
+	char			**path;
 	unsigned int	x;
-	char		*real_cmd;
+	char			*real_cmd;
 
 	path = get_path_var(cmd, env);
 	if (!path)
@@ -57,9 +57,9 @@ char	*whereis_cmd(char **cmd, char **env)
 
 char	**get_path_var(char **cmd, char **env)
 {
-	char		**path;
+	char			**path;
 	unsigned int	i;
-	char		**str;
+	char			**str;
 
 	i = 0;
 	while (env[i])
@@ -98,7 +98,6 @@ char	**get_arg(char **arr, char *real_path, char **cmd)
 	return (arr);
 }
 
-
 t_cmd	get_cmd(t_list lst, char *argv_x, char **env)
 {
 	char		**cmd;
@@ -112,12 +111,7 @@ t_cmd	get_cmd(t_list lst, char *argv_x, char **env)
 		exit(0);
 	}
 	real_path = whereis_cmd(cmd, env);
-	if (!real_path)
-	{
-		free_that_matrice(cmd);
-		str_write("No path in env variable");
-		exit(0);
-	}
+	check_if_real_path_ok(real_path, cmd);
 	to_return.cmd = real_path;
 	to_return.arg = get_arg(to_return.arg, real_path, cmd);
 	free(cmd[0]);

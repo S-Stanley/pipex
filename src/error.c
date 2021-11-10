@@ -1,42 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_occurence.c                                  :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sserbin <stanleyserbin@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 20:45:54 by sserbin           #+#    #+#             */
-/*   Updated: 2021/11/10 20:45:54 by sserbin          ###   ########.fr       */
+/*   Created: 2021/11/10 20:54:07 by sserbin           #+#    #+#             */
+/*   Updated: 2021/11/10 20:54:08 by sserbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-unsigned int	count_occ(char *str, char *occurence)
+void	check_if_real_path_ok(char *real_path, char **cmd)
 {
-	int				i;
-	unsigned int	count;
-	unsigned int	x;
-	unsigned int	index_to_remember;
-
-	i = -1;
-	count = 0;
-	index_to_remember = 0;
-	while (str[++i])
+	if (!real_path)
 	{
-		x = 0;
-		index_to_remember = i;
-		while (str[i] == occurence[x])
-		{
-			x++;
-			i++;
-		}
-		if (x >= ft_strlen(occurence))
-			count++;
-		else
-			i = index_to_remember;
+		free_that_matrice(cmd);
+		str_write("No path in env variable");
+		exit(0);
 	}
-	if (count > 0)
-		count++;
-	return (count);
 }

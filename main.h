@@ -24,6 +24,11 @@ typedef struct s_cmd{
 	char	**arg;
 }				t_cmd;
 
+typedef struct s_return_value{
+	char	*str;
+	int		i;
+}				t_return_value;
+
 typedef struct s_list {
 	int		fd[2];
 	char	*cmd1;
@@ -50,5 +55,6 @@ void			free_that_matrice(char **matrice);
 t_list			get_infile(t_list lst, char **argv);
 t_list			get_outfile(t_list lst, char **argv);
 t_cmd			get_cmd(t_list lst, char *argv_x, char **env);
+void			check_if_real_path_ok(char *real_path, char **cmd);
 
 #endif

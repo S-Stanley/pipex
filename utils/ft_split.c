@@ -12,11 +12,6 @@
 
 #include "../main.h"
 
-typedef struct s_return_value{
-	char	*str;
-	int	i;
-}		t_return_value;
-
 char	**get_malloc(unsigned int size)
 {
 	char	**to_return;
@@ -47,7 +42,7 @@ unsigned int	count_next_occ(char *to_split, int i, char *splitter)
 
 t_return_value	get_value(char *to_split, int i, char *splitter)
 {
-	char		*str;
+	char			*str;
 	unsigned int	x;
 	t_return_value	to_return;
 
@@ -74,7 +69,7 @@ t_return_value	get_value(char *to_split, int i, char *splitter)
 
 char	**ft_split(char *to_split, char *splitter)
 {
-	char		**to_return;
+	char			**to_return;
 	unsigned int	i;
 	unsigned int	x;
 	t_return_value	splitted;
