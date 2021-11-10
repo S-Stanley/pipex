@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:09:46 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 18:43:33 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 19:01:15 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,46 +158,75 @@ char	**get_arg(char **arr, char *real_path, char **cmd)
 	return (arr);
 }
 
-t_list	get_cmd_1(t_list lst, char **argv, char **env)
+typedef struct s_cmd{
+	char	*cmd;
+	char	**arg;
+}		t_cmd;
+
+t_cmd	get_cmd(t_list lst, char *argv_x, char **env)
 {
 	char		**cmd;
 	char		*real_path;
+	t_cmd		to_return;
 
-	cmd = ft_split(argv[2], " ");
+	cmd = ft_split(argv_x, " ");
 	if (!cmd || !cmd[0])
 	{
 		free_that_matrice(cmd);
 		exit(0);
 	}
 	real_path = whereis_cmd(cmd, env);
-	if (real_path)
+	if (!real_path)
 	{
 		free_that_matrice(cmd);
 		str_write("No path in env variable");
 		exit(0);
 	}
-	lst.cmd1 = real_path;
-	lst.arg1 = get_arg(lst.arg1, real_path, cmd);
-	if (!lst.arg1)
+	to_return.cmd = real_path;
+	to_return.arg = get_arg(to_return.arg, real_path, cmd);
+	free(cmd);
+	if (!to_return.arg)
 	{
 		str_write("Error while allocating for get arguments 1");
 		free(real_path);
-		free(cmd);
 		exit(0);
 	}
-	free_that_matrice(lst.arg1);
-	free(cmd);
-	return (lst);
+	return (to_return);
+}
+
+void	read_matrice(char **arr)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		printf("%s\n", arr[i]);
+		i++;
+	}
+	printf("\n");
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	t_list	lst;
+	t_cmd	parse;
 
 	check_argc(argc, env);
 	lst = get_infile(lst, argv);
 	lst = get_outfile(lst, argv);
-	lst = get_cmd_1(lst, argv, env);
-	//lst = get_cmd_2(lst, argv, env);	
+	parse = get_cmd(lst, argv[2], env);
+	lst.cmd1 = parse.cmd;
+	lst.arg1 = parse.arg;
+	parse = get_cmd(lst, argv[3], env);
+	lst.cmd2 = parse.cmd;
+	lst.arg2 = parse.arg;
+
+	printf("%s\n", lst.infile);
+	printf("%s\n", lst.cmd1);
+	read_matrice(lst.arg1);
+	printf("%s\n", lst.cmd2);
+	read_matrice(lst.arg2);
+	printf("%s\n", lst.outfile);
 	return (0);
 }
