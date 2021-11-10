@@ -6,22 +6,22 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:46:14 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 15:59:41 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 16:06:12 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-typedef	struct s_return_value {
+typedef struct s_return_value{
 	char	*str;
 	int	i;
 }		t_return_value;
 
 char	**get_malloc(unsigned int size, char *to_split, char*splitter)
 {
-	char **to_return;
+	char	**to_return;
 
-	to_return = malloc(sizeof(char *) * (count_occurence(to_split, splitter) + 1));
+	to_return = malloc(sizeof(char *) * (count_occ(to_split, splitter) + 1));
 	if (!to_return)
 	{
 		str_write("Error allocation in ft_split");
@@ -29,7 +29,7 @@ char	**get_malloc(unsigned int size, char *to_split, char*splitter)
 	}
 }
 
-unsigned int	count_next_occurence(char *to_split, int i, char *splitter)
+unsigned int	count_next_occ(char *to_split, int i, char *splitter)
 {
 	unsigned int	count;
 
@@ -51,7 +51,7 @@ t_return_value	get_value(char *to_split, int i, char *splitter)
 	t_return_value	to_return;
 
 	x = 0;
-	str = malloc(sizeof(char) * (count_next_occurence(to_split, i, splitter) + 1));
+	str = malloc(sizeof(char) * (count_next_occ(to_split, i, splitter) + 1));
 	if (!str)
 	{
 		to_return.str = NULL;
@@ -78,7 +78,7 @@ char	**ft_split(char *to_split, char *splitter)
 	unsigned int	x;
 	t_return_value	splitted;
 
-	to_return = get_malloc(count_occurence(to_split, splitter), to_split, splitter);
+	to_return = get_malloc(count_occ(to_split, splitter), to_split, splitter);
 	i = 0;
 	x = 0;
 	while (i < ft_strlen(to_split))

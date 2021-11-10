@@ -6,13 +6,13 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:50:08 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 15:47:37 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 16:06:29 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-unsigned int	count_occurence(char *str, char *occurence)
+unsigned int	count_occ(char *str, char *occurence)
 {
 	unsigned int	i;
 	unsigned int	count;
