@@ -30,32 +30,7 @@ char	*concat_path(char *s1, char *s2, char *s3)
 	return (str2);
 }
 
-char	*whereis_cmd(char **cmd, char **env)
-{
-	char			**path;
-	unsigned int	x;
-	char			*real_cmd;
-
-	path = get_path_var(cmd, env);
-	if (!path)
-		return (NULL);
-	x = 0;
-	while (path[x])
-	{
-		real_cmd = concat_path(path[x], "/", cmd[0]);
-		if (access(real_cmd, X_OK) == 0)
-		{
-			free_that_matrice(path);
-			return (real_cmd);
-		}
-		free(real_cmd);
-		x++;
-	}
-	free_that_matrice(path);
-	return (NULL);
-}
-
-char	**get_path_var(char **cmd, char **env)
+char	**get_path_var(char **env)
 {
 	char			**path;
 	unsigned int	i;
@@ -73,6 +48,31 @@ char	**get_path_var(char **cmd, char **env)
 		}
 		i++;
 	}
+	return (NULL);
+}
+
+char	*whereis_cmd(char **cmd, char **env)
+{
+	char			**path;
+	unsigned int	x;
+	char			*real_cmd;
+
+	path = get_path_var(env);
+	if (!path)
+		return (NULL);
+	x = 0;
+	while (path[x])
+	{
+		real_cmd = concat_path(path[x], "/", cmd[0]);
+		if (access(real_cmd, X_OK) == 0)
+		{
+			free_that_matrice(path);
+			return (real_cmd);
+		}
+		free(real_cmd);
+		x++;
+	}
+	free_that_matrice(path);
 	return (NULL);
 }
 
@@ -98,7 +98,7 @@ char	**get_arg(char **arr, char *real_path, char **cmd)
 	return (arr);
 }
 
-t_cmd	get_cmd(t_list lst, char *argv_x, char **env)
+t_cmd	get_cmd(char *argv_x, char **env)
 {
 	char		**cmd;
 	char		*real_path;
