@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/wait.h>
-# include <stdio.h>
 
 typedef struct s_cmd{
 	char	*cmd;

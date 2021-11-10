@@ -26,18 +26,6 @@ void	check_argc(int argc, char **env)
 	}
 }
 
-void	read_matrice(char **arr)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		printf("-%s\n", arr[i]);
-		i++;
-	}
-}
-
 t_list	setup_lst(void)
 {
 	t_list	lst;
