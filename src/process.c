@@ -16,8 +16,6 @@ void	free_lst(t_list lst)
 {
 	free_that_matrice(lst.arg1);
 	free_that_matrice(lst.arg2);
-	free(lst.cmd1);
-	free(lst.cmd2);
 }
 
 void	parent_process(t_list lst)

@@ -17,6 +17,12 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <stdio.h>
+
+typedef struct s_cmd{
+	char	*cmd;
+	char	**arg;
+}				t_cmd;
 
 typedef struct s_list {
 	int		fd[2];
@@ -32,14 +38,17 @@ typedef struct s_list {
 }				t_list;
 
 unsigned int	ft_strlen(char *str);
-void		str_write(char *str);
+void			str_write(char *str);
 unsigned int	count_occ(char *str, char *occurence);
-char		**ft_split(char *to_split, char *splitter);
-char		*ft_concat(char *str1, char *str2);
-char		*whereis_cmd(char **cmd, char **env);
-char		**get_path_var(char **cmd, char **env);
-char		**push_arr(char **arr, char *to_add);
-void		pipex(t_list lst);
-void		free_that_matrice(char **matrice);
+char			**ft_split(char *to_split, char *splitter);
+char			*ft_concat(char *str1, char *str2);
+char			*whereis_cmd(char **cmd, char **env);
+char			**get_path_var(char **cmd, char **env);
+char			**push_arr(char **arr, char *to_add);
+void			pipex(t_list lst);
+void			free_that_matrice(char **matrice);
+t_list			get_infile(t_list lst, char **argv);
+t_list			get_outfile(t_list lst, char **argv);
+t_cmd			get_cmd(t_list lst, char *argv_x, char **env);
 
 #endif
