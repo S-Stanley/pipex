@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:10:00 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 17:26:08 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 18:13:00 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ char		**ft_split(char *to_split, char *splitter);
 char		*ft_concat(char *str1, char *str2);
 char		*whereis_cmd(char **cmd, char **env);
 char		**get_path_var(char **cmd, char **env);
+char		**push_arr(char **arr, char *to_add);
 
 #endif

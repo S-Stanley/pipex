@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:09:46 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 18:04:06 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 18:43:33 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,10 +136,32 @@ char	**get_path_var(char **cmd, char **env)
 	return (NULL);
 }
 
+char	**get_arg(char **arr, char *real_path, char **cmd)
+{
+	unsigned int	i;
+
+	i = 0;
+	arr = NULL;
+	arr = push_arr(arr, real_path);
+	if (!arr)
+		return (NULL);
+	while (cmd[i])
+	{
+		arr = push_arr(arr, cmd[i]);
+		if (!arr)
+		{
+			free_that_matrice(arr);
+			return (NULL);
+		}
+		i++;
+	}
+	return (arr);
+}
+
 t_list	get_cmd_1(t_list lst, char **argv, char **env)
 {
-	char	**cmd;
-	char	*real_path;
+	char		**cmd;
+	char		*real_path;
 
 	cmd = ft_split(argv[2], " ");
 	if (!cmd || !cmd[0])
@@ -148,13 +170,23 @@ t_list	get_cmd_1(t_list lst, char **argv, char **env)
 		exit(0);
 	}
 	real_path = whereis_cmd(cmd, env);
-	if (!real_path)
+	if (real_path)
 	{
 		free_that_matrice(cmd);
 		str_write("No path in env variable");
 		exit(0);
 	}
-	free_that_matrice(cmd);
+	lst.cmd1 = real_path;
+	lst.arg1 = get_arg(lst.arg1, real_path, cmd);
+	if (!lst.arg1)
+	{
+		str_write("Error while allocating for get arguments 1");
+		free(real_path);
+		free(cmd);
+		exit(0);
+	}
+	free_that_matrice(lst.arg1);
+	free(cmd);
 	return (lst);
 }
 
