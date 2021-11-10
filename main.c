@@ -6,7 +6,7 @@
 /*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:09:46 by ubuntu            #+#    #+#             */
-/*   Updated: 2021/11/10 17:40:58 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/11/10 18:04:06 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	*whereis_cmd(char **cmd, char **env)
 	path = get_path_var(cmd, env);
 	if (!path)
 		return (NULL);
-	/*x = 0;
+	x = 0;
 	while (path[x])
 	{
 		real_cmd = concat_path(path[x], "/", cmd[0]);
@@ -110,18 +110,9 @@ char	*whereis_cmd(char **cmd, char **env)
 		}
 		free(real_cmd);
 		x++;
-	}*/
+	}
 	free_that_matrice(path);
 	return (NULL);
-}
-
-void	read_matrice(char **matrice)
-{
-	int	i;
-
-	i = -1;
-	while (matrice[++i])
-		printf("%s\n", matrice[i]);
 }
 
 char	**get_path_var(char **cmd, char **env)
@@ -157,13 +148,12 @@ t_list	get_cmd_1(t_list lst, char **argv, char **env)
 		exit(0);
 	}
 	real_path = whereis_cmd(cmd, env);
-	/*if (!real_path)
+	if (!real_path)
 	{
 		free_that_matrice(cmd);
 		str_write("No path in env variable");
 		exit(0);
-	}*/
-	//str_write(real_path);
+	}
 	free_that_matrice(cmd);
 	return (lst);
 }
