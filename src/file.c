@@ -19,6 +19,8 @@ char	*get_shell(char **env)
 	char	*to_return;
 
 	shell = get_var_path_env(env, "SHELL");
+	if (!shell)
+		return (ft_strdup(""));
 	tmp = ft_split(shell[0], '/');
 	free_that_matrice(shell);
 	to_return = ft_strdup(tmp[count_len_array(tmp) - 1]);
