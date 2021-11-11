@@ -28,13 +28,16 @@ char	*get_shell(char **env)
 
 t_list	get_infile(t_list lst, char **argv)
 {
-	int	fd;
+	int		fd;
+	char	*shell;
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
 		close(fd);
-		str_write(get_shell(lst.env));
+		shell = get_shell(lst.env);
+		str_write(shell);
+		free(shell);
 		str_write(": no such file or directory: ");
 		str_write(argv[1]);
 		free_lst(lst);
@@ -47,13 +50,16 @@ t_list	get_infile(t_list lst, char **argv)
 
 t_list	get_outfile(t_list lst, char **argv)
 {
-	int	fd;
+	int		fd;
+	char	*shell;
 
 	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd == -1)
 	{
 		close(fd);
-		str_write(get_shell(lst.env));
+		shell = get_shell(lst.env);
+		str_write(shell);
+		free(shell);
 		str_write(": no such file or directory: ");
 		str_write(argv[4]);
 		free_lst(lst);
