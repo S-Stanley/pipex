@@ -52,7 +52,7 @@ void			free_that_matrice(char **matrice);
 t_list			get_infile(t_list lst, char **argv);
 t_list			get_outfile(t_list lst, char **argv);
 t_cmd			get_cmd(char *argv_x, char **env, int code_error);
-unsigned int	is_path_ok(char *real_path, char **cmd, char **env, char *str);
+unsigned int	is_path_ok(char *real_path, char **cmd, t_list lst, char *str);
 char			*get_shell(char **env);
 unsigned int	count_len_array(char **arr);
 char			*ft_strdup(char *str);
@@ -60,5 +60,6 @@ char			*get_shell(char **env);
 char			**get_var_path_env(char **env, char *to_find);
 char			*ft_strjoin(char const *s1, char const *s2);
 int				start_with(char *str, char *occurence);
+void			free_lst(t_list lst);
 
 #endif

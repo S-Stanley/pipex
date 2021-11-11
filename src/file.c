@@ -37,6 +37,7 @@ t_list	get_infile(t_list lst, char **argv)
 		str_write(get_shell(lst.env));
 		str_write(": no such file or directory: ");
 		str_write(argv[1]);
+		free_lst(lst);
 		exit(0);
 	}
 	close(fd);
@@ -55,6 +56,7 @@ t_list	get_outfile(t_list lst, char **argv)
 		str_write(get_shell(lst.env));
 		str_write(": no such file or directory: ");
 		str_write(argv[4]);
+		free_lst(lst);
 		exit(1);
 	}
 	close(fd);

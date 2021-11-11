@@ -95,7 +95,7 @@ t_cmd	get_cmd(char *argv_x, char **env, int code_error)
 	real_path = whereis_cmd(cmd, env);
 	to_return.cmd = real_path;
 	to_return.arg = get_arg(to_return.arg, real_path, cmd);
-	if (is_path_ok(to_return.arg[0], cmd, env, argv_x))
+	if (is_path_ok(to_return.arg[0], cmd, lst, argv_x))
 		exit(code_error);
 	free(cmd[0]);
 	free(cmd);

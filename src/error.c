@@ -12,14 +12,14 @@
 
 #include "../main.h"
 
-unsigned int	is_path_ok(char *real_path, char **cmd, char **env, char *str)
+unsigned int	is_path_ok(char *real_path, char **cmd, t_list lst, char *str)
 {
 	char	*shell;
 	char	**cmd_to_print;
 
 	if (!real_path)
 	{
-		shell = get_shell(env);
+		shell = get_shell(lst.env);
 		cmd_to_print = ft_split(str, ' ');
 		free_that_matrice(cmd);
 		str_write(shell);
@@ -27,6 +27,7 @@ unsigned int	is_path_ok(char *real_path, char **cmd, char **env, char *str)
 		str_write(": command not found: ");
 		str_write(cmd_to_print[0]);
 		free_that_matrice(cmd_to_print);
+		free_lst(lst);
 		return (1);
 	}
 	return (0);
