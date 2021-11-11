@@ -32,7 +32,7 @@ char	**get_var_path_env(char **env, char *to_find)
 char	*whereis_cmd(char **cmd, char **env)
 {
 	char			**path;
-	unsigned int	i;
+	int				i;
 	char			*concat;
 	char			*tmp;
 	char			*to_return;
@@ -40,8 +40,8 @@ char	*whereis_cmd(char **cmd, char **env)
 	path = get_var_path_env(env, "PATH");
 	if (!path)
 		return (NULL);
-	i = 0;
-	while (path[i])
+	i = -1;
+	while (path[++i])
 	{
 		tmp = ft_strjoin("/", cmd[0]);
 		concat = ft_strjoin(path[i], tmp);
@@ -53,7 +53,6 @@ char	*whereis_cmd(char **cmd, char **env)
 			return (to_return);
 		}
 		free(concat);
-		i++;
 	}
 	free_that_matrice(path);
 	return (NULL);
