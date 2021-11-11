@@ -51,7 +51,7 @@ void			pipex(t_list lst);
 void			free_that_matrice(char **matrice);
 t_list			get_infile(t_list lst, char **argv);
 t_list			get_outfile(t_list lst, char **argv);
-t_cmd			get_cmd(char *argv_x, char **env, int code_error);
+t_cmd			get_cmd(char *argv_x, t_list lst, int code_error);
 unsigned int	is_path_ok(char *real_path, char **cmd, t_list lst, char *str);
 char			*get_shell(char **env);
 unsigned int	count_len_array(char **arr);

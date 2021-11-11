@@ -43,10 +43,10 @@ int	main(int argc, char **argv, char **env)
 	lst = setup_lst();
 	check_argc(argc, env);
 	lst.env = env;
-	parse = get_cmd(argv[2], env, 0);
+	parse = get_cmd(argv[2], lst, 0);
 	lst.cmd1 = parse.cmd;
 	lst.arg1 = parse.arg;
-	parse = get_cmd(argv[3], env, 127);
+	parse = get_cmd(argv[3], lst, 127);
 	lst.cmd2 = parse.cmd;
 	lst.arg2 = parse.arg;
 	lst = get_infile(lst, argv);
