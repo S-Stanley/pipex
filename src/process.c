@@ -14,8 +14,10 @@
 
 void	free_lst(t_list lst)
 {
-	free_that_matrice(lst.arg1);
-	free_that_matrice(lst.arg2);
+	if (lst.arg1)
+		free_that_matrice(lst.arg1);
+	if (lst.arg2)
+		free_that_matrice(lst.arg2);
 }
 
 void	parent_process(t_list lst)
