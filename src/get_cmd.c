@@ -19,8 +19,11 @@ char	**get_var_path_env(char **env, char *to_find)
 	i = 0;
 	while (env[i])
 	{
-		if (start_with(env[i], to_find))
-			return (ft_split(env[i], ':'));
+		if (env[i])
+		{
+			if (start_with(env[i], to_find))
+				return (ft_split(env[i], ':'));
+		}
 		i++;
 	}
 	return (NULL);
@@ -35,8 +38,9 @@ char	*whereis_cmd(char **cmd, char **env)
 	char			*to_return;
 
 	path = get_var_path_env(env, "PATH");
+	if (!path)
+		return (NULL);
 	i = 0;
-	to_return = NULL;
 	while (path[i])
 	{
 		tmp = ft_strjoin("/", cmd[0]);
