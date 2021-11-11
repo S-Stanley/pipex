@@ -55,6 +55,7 @@ char	*whereis_cmd(char **cmd, char **env)
 		free(concat);
 		i++;
 	}
+	free_that_matrice(path);
 	return (NULL);
 }
 
