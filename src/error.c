@@ -12,7 +12,7 @@
 
 #include "../main.h"
 
-void	is_path_ok(char *real_path, char **cmd, char **env, char *str, int code_error)
+unsigned int	is_path_ok(char *real_path, char **cmd, char **env, char *str)
 {
 	char	*shell;
 	char	**cmd_to_print;
@@ -27,6 +27,7 @@ void	is_path_ok(char *real_path, char **cmd, char **env, char *str, int code_err
 		str_write(": command not found: ");
 		str_write(cmd_to_print[0]);
 		free_that_matrice(cmd_to_print);
-		exit(code_error);
+		return (1);
 	}
+	return (0);
 }

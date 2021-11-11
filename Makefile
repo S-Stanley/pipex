@@ -12,7 +12,8 @@
 
 SRC = 	main.c \
 		src/clean.c src/error.c src/file.c src/get_cmd.c src/process.c \
-		utils/count_occurence.c utils/ft_concat.c utils/ft_split.c utils/ft_strlen.c utils/push_arr.c utils/str_write.c utils/ft_strdup.c
+		utils/count_occurence.c utils/ft_strjoin.c utils/ft_split.c utils/ft_strlen.c \
+		utils/push_arr.c utils/str_write.c utils/ft_strdup.c utils/start_with.c
 OBJS = $(SRC:.c=.o)
 NAME = pipex
 CC = clang

@@ -14,7 +14,7 @@
 
 char	*get_shell(char **env)
 {
-	char 	**shell;
+	char	**shell;
 	char	**tmp;
 	char	*to_return;
 
