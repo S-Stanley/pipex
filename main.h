@@ -41,13 +41,11 @@ typedef struct s_list {
 	char	**env;
 }				t_list;
 
+char			**ft_split(const char *str, char c);
 unsigned int	ft_strlen(char *str);
 void			str_write(char *str);
 unsigned int	count_occ(char *str, char *occurence);
-char			**ft_split(char *to_split, char *splitter);
-char			*ft_concat(char *str1, char *str2);
 char			*whereis_cmd(char **cmd, char **env);
-char			**get_path_var(char **env, char *to_find);
 char			**push_arr(char **arr, char *to_add);
 void			pipex(t_list lst);
 void			free_that_matrice(char **matrice);
@@ -58,5 +56,7 @@ void			is_path_ok(char *real_path, char **cmd, char **env, char *str, int code_e
 char			*get_shell(char **env);
 unsigned int	count_len_array(char **arr);
 char			*ft_strdup(char *str);
+char			*get_shell(char **env);
+char    		**get_var_path_env(char **env, char *to_find);
 
 #endif

@@ -18,8 +18,8 @@ char	*get_shell(char **env)
 	char	**tmp;
 	char	*to_return;
 
-	shell = get_path_var(env, "SHELL");
-	tmp = ft_split(shell[0], "/");
+	shell = get_var_path_env(env, "SHELL");
+	tmp = ft_split(shell[0], '/');
 	free_that_matrice(shell);
 	to_return = ft_strdup(tmp[count_len_array(tmp) - 1]);
 	free_that_matrice(tmp);

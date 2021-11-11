@@ -12,67 +12,173 @@
 
 #include "../main.h"
 
-char	*concat_path(char *s1, char *s2, char *s3)
+int		ft_count(const char *str, char c)
 {
-	char	*str1;
-	char	*str2;
-
-	str1 = ft_concat(s1, s2);
-	if (!str1)
-		return (NULL);
-	str2 = ft_concat(str1, s3);
-	if (!str2)
-	{
-		free(str1);
-		return (NULL);
-	}
-	free(str1);
-	return (str2);
-}
-
-char	**get_path_var(char **env, char *to_find)
-{
-	char			**path;
-	unsigned int	i;
-	char			**str;
+	int		i;
+	int		count;
+	int		size;
 
 	i = 0;
-	while (env[i])
+	count = 0;
+	size = (int)ft_strlen((char *)str);
+	while (i < size && str[i])
 	{
-		if (count_occ(env[i], to_find))
-		{
-			str = ft_split(env[i], "=");
-			path = ft_split(str[1], ":");
-			free_that_matrice(str);
-			return (path);
-		}
+		while (i < size && str[i] != c)
+			i++;
+		count++;
+		while (i < size && str[i] == c)
+			i++;
+	}
+	return (count + 1);
+}
+
+char	*ft_new(char *str, int start, int end)
+{
+	char	*res;
+	int		i;
+
+	i = 0;
+	res = malloc(sizeof(char) * (end - start + 1));
+	if (!res)
+		return (NULL);
+	while (start != end)
+		res[i++] = str[start++];
+	res[i] = '\0';
+	return (res);
+}
+
+char	*ft_split_2(char *str, char c, int i)
+{
+	int start;
+
+	start = i;
+	while (str[i] != c && str[i])
+		i++;
+	return (ft_new(str, start, i));
+}
+
+char	**ft_split(const char *str, char c)
+{
+	int		i;
+	int		x;
+	char	**res;
+	int		start;
+	int		size;
+
+	if (!str)
+		return (NULL);
+	if (!(res = malloc(sizeof(char *) * ft_count(str, c))))
+		return (NULL);
+	i = 0;
+	x = -1;
+	size = (int)ft_strlen((char *)str);
+	while (i < size)
+	{
+		start = i;
+		while (i < size && str[i] != c)
+			i++;
+		if (start != 0 || str[start] != c)
+			res[++x] = ft_new((char *)str, start, i);
+		while (i < size && str[i] == c)
+			i++;
+	}
+	res[++x] = NULL;
+	return (res);
+}
+
+void	ft_concat(const char *s1, const char *s2, char *res)
+{
+	int		i;
+	int		n;
+
+	i = 0;
+	while (s1[i])
+	{
+		res[i] = s1[i];
 		i++;
 	}
-	return (NULL);
+	n = i;
+	i = 0;
+	while (s2[i])
+	{
+		res[n] = s2[i];
+		n++;
+		i++;
+	}
+	res[n] = '\0';
 }
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*res;
+	int		len_s1;
+	int		len_s2;
+
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	len_s1 = ft_strlen((char *)s1);
+	len_s2 = ft_strlen((char *)s2);
+	res = malloc(sizeof(char) * (len_s1 + len_s2 + 1));
+	if (!res)
+		return (NULL);
+	ft_concat(s1, s2, res);
+	return (res);
+}
+
+int     start_with(char *str, char *occurence)
+{
+        unsigned int    i;
+
+        i = 0;
+        while (occurence[i])
+        {
+                if (str[i] != occurence[i])
+                        return (0);
+                i++;
+        }
+        return (1);
+}
+
+char    **get_var_path_env(char **env, char *to_find)
+{
+        unsigned int    i;
+
+        i = 0;
+        while (env[i])
+        {
+                if (start_with(env[i], to_find))
+                        return (ft_split(env[i], ':'));
+                i++;
+        }
+        return (NULL);
+}
+
 
 char	*whereis_cmd(char **cmd, char **env)
 {
-	char			**path;
-	unsigned int	x;
-	char			*real_cmd;
+	char 			**path;
+	unsigned int	i;
+	char			*concat;
+	char			*tmp;
+	char			*to_return;
 
-	path = get_path_var(env, "PATH");
-	if (!path)
-		return (NULL);
-	x = 0;
-	while (path[x])
+	path = get_var_path_env(env, "PATH");
+	i = 0;
+	to_return = NULL;
+	while (path[i])
 	{
-		real_cmd = concat_path(path[x], "/", cmd[0]);
-		if (access(real_cmd, X_OK) == 0)
+		tmp = ft_strjoin("/", cmd[0]);
+		concat = ft_strjoin(path[i], tmp);
+		free(tmp);
+		if (access(concat, X_OK) == 0)
 		{
+			to_return = concat;
 			free_that_matrice(path);
-			return (real_cmd);
+			return (to_return);
 		}
-		free(real_cmd);
-		x++;
+		free(concat);
+		i++;
 	}
-	free_that_matrice(path);
 	return (NULL);
 }
 
@@ -104,7 +210,7 @@ t_cmd	get_cmd(char *argv_x, char **env, int code_error)
 	char		*real_path;
 	t_cmd		to_return;
 
-	cmd = ft_split(argv_x, " ");
+	cmd = ft_split(argv_x, ' ');
 	if (!cmd || !cmd[0])
 	{
 		free_that_matrice(cmd);
